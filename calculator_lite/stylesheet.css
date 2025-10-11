@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#elem-1, #elem-2, #sum {
+    border-bottom: 4px solid black;
+    font-size: xx-large;
+}
+
+.operations{
+    margin: 40px;
+}
