@@ -3,38 +3,43 @@
     padding: 0;
     box-sizing: border-box;
     text-align: center;
+    font-weight: bold;
+    font-size: larger;
     color: white;
+    font-family: sans-serif;
 }
 
 body {
-    background-color: darkgreen;
+    background-image: url("images/table.png");
+    background-size: cover;
 }
 
 .heading {
-    color: orange;
-    margin: 60px;
+    color: goldenrod;
+    margin: 50px;
     font-weight: bold;
+    font-size: 3cap;
 }
 
 #cards {
-    margin: 10px 0px;
+    margin: 15px 0px;
 }
 
 .controls {
-    margin: 10px;
+    margin: 15px;
 }
 
-h2 {
+.message {
     font-style: italic;
-    font-weight: 800;
 }
 
 button{
-    background-color: orange;
+    background-color: goldenrod;
     width: 150px;
     height: 30px;
     color: darkgreen;
-    font-weight: bolder;
+    font-size: medium;
     border-radius: 5px;
     margin-bottom: 1px;
+    border: none;
 }
