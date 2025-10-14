@@ -1,6 +1,5 @@
-let min = 2;
+let min = 1;
 let max = 11;
-Math.floor(Math.random() * (max-min)) + min;
 let card1 = 0;
 let card2 = 0;
 let count = 0;
@@ -15,6 +14,10 @@ document.getElementById("card2").innerText += card2;
 
 document.getElementById("sum").textContent += sum;
 
+function random_number() { // 
+    return Math.floor(Math.random() * (max-min) + 0.3) + min;
+}
+
 function reset() {
     location.reload();
 }
@@ -22,8 +25,16 @@ function reset() {
 function start() {
     if(count===0 && !has_started) {
         has_started = true;
-        card1 = Math.floor(Math.random() * (max-min)) + min;
-        card2 = Math.floor(Math.random() * (max-min)) + min;
+        card1 = random_number();
+        card2 = random_number();
+
+        if(card1 === 1) {
+            card1 = 11;
+        }
+
+        if(card2 === 1) {
+            card2 = 11;
+        }
 
         sum = card1 + card2;
 
@@ -63,7 +74,12 @@ function newcard() {
         switch(count) {
         case 1:
             if(sum <= 20 && isAlive) {
-                let card3 = Math.floor(Math.random() * (max-min)) + min;
+                let card3 = random_number();
+
+                if(card3 === 1) {
+                    card3 = 11;
+                }
+
                 sum += card3;
                 document.getElementById("cards").innerHTML += `<span id="card3"></span>`;
                 document.getElementById("card3").innerHTML = card3;
@@ -81,7 +97,12 @@ function newcard() {
             }
         case 2:
             if(sum <= 20 && isAlive) {
-                let card4 = Math.floor(Math.random() * (max-min)) + min;
+                let card4 = random_number();
+
+                if(card4 === 1) {
+                    card4 = 11;
+                }
+
                 sum += card4;
                 document.getElementById("cards").innerHTML += ` <span id="card4"></span>`;
                 document.getElementById("card4").innerHTML = card4;
@@ -99,7 +120,12 @@ function newcard() {
             }
         case 3:
             if(sum <= 20 && isAlive) {
-                let card5 = Math.floor(Math.random() * (max-min)) + min;
+                let card5 = random_number();
+
+                if(card5 === 1) {
+                    card5 = 11;
+                }
+
                 sum += card5;
                 document.getElementById("cards").innerHTML += ` <span id="card5"></span>`;
                 document.getElementById("card5").innerHTML = card5;
@@ -117,7 +143,12 @@ function newcard() {
             }
         case 4:
             if(sum <= 20 && isAlive) {
-                let card6 = Math.floor(Math.random() * (max-min)) + min;
+                let card6 = random_number();
+
+                if(card6 === 1) {
+                    card6 = 11;
+                }
+
                 sum += card6;
                 document.getElementById("cards").innerHTML += ` <span id="card6"></span>`;
                 document.getElementById("card6").innerHTML = card6;
