@@ -32,7 +32,7 @@ function start() {
         document.getElementById("sum").textContent = sum;
 
         if(sum <= 20 && isAlive) {
-            message = "Want to draw another card?";
+            message = "You have to draw another card!";
             document.getElementById("message-el").innerText = message;
         }
         else if(sum === 21) {
@@ -134,4 +134,12 @@ function newcard() {
             }
     }
     
+}
+
+document.getElementById("rules-btn").onclick = function() {
+  document.getElementById("rules-popup").style.display = "flex";
+}
+
+document.getElementById("close-btn").onclick = function() {
+  document.getElementById("rules-popup").style.display = "none";
 }

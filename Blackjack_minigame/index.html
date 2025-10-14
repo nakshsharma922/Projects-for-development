@@ -21,6 +21,22 @@
         <button id="new-card" onclick="newcard()">NEW CARD</button>
         <button id="new-game" onclick="newgame()">PLAY AGAIN</button>
     </div>
+
+    <button id="rules-btn">Show Rules</button>
+
+    <div id="rules-popup" class="popup">
+        <div class="popup-content">
+            <h3>Blackjack Rules</h3>
+            <p>🎯 Goal: Get as close to 21 as possible without going over.</p>
+            <ul>
+                <li>Each card has a value between 2 and 11.</li>
+                <li>If your total exceeds 21, you lose.</li>
+                <li>Hitting 21 exactly means Blackjack!</li>
+            </ul>
+            <button id="close-btn">Close</button>
+        </div>
+    </div>
+
     <script src="first.js"></script>
 </body>
 </html>
