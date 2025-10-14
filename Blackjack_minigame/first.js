@@ -1,18 +1,17 @@
 let min = 1;
 let max = 11;
-let card1 = 0;
-let card2 = 0;
+
 let count = 0;
 let has_started = false;
 let hasBlackJack = false;
 let isAlive = true;
-let sum = card1 + card2;
+
 let message = "";
 
-document.getElementById("card1").innerText += card1;
-document.getElementById("card2").innerText += card2;
+//document.getElementById("card1").innerText += card1;
+//document.getElementById("card2").innerText += card2;
 
-document.getElementById("sum").textContent += sum;
+//document.getElementById("sum").textContent += sum;
 
 function random_number() { // 
     return Math.floor(Math.random() * (max-min) + 0.3) + min;
@@ -25,8 +24,8 @@ function reset() {
 function start() {
     if(count===0 && !has_started) {
         has_started = true;
-        card1 = random_number();
-        card2 = random_number();
+        let card1 = random_number();
+        let card2 = random_number();
 
         if(card1 === 1) {
             card1 = 11;
