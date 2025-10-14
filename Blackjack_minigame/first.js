@@ -43,7 +43,10 @@ function start() {
 }
 
 function newgame() {
-    document.getElementById("Cards").textContent = "";
+    count=0;
+    isAlive = true;
+    document.getElementById("cards").innerHTML = "Cards : " + `<span id="card1"></span> <span id="card2"></span> `
+    document.getElementById("message-el").innerText = "";
     start();
 }
 
@@ -62,6 +65,10 @@ function newcard() {
                     message = "You're out of the game";
                     document.getElementById("message-el").innerText = message;
                 }
+                else if(sum === 21) {
+                    message = "You've got a blackjack";
+                    document.getElementById("message-el").innerText = message;
+                }
                 break;
             }
         case 2:
@@ -76,6 +83,10 @@ function newcard() {
                     message = "You're out of the game";
                     document.getElementById("message-el").innerText = message;
                 }
+                else if(sum === 21) {
+                    message = "You've got a blackjack";
+                    document.getElementById("message-el").innerText = message;
+                }
                 break;
             }
         case 3:
@@ -88,6 +99,10 @@ function newcard() {
                 if(sum > 21) {
                     isAlive = false;
                     message = "You're out of the game";
+                    document.getElementById("message-el").innerText = message;
+                }
+                else if(sum === 21) {
+                    message = "You've got a blackjack";
                     document.getElementById("message-el").innerText = message;
                 }
                 break;
