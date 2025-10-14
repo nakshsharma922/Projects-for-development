@@ -57,9 +57,10 @@ function newgame() {
     start();
 }
 
-function newcard() {
-    count++;
-    switch(count) {
+function newcard() {  
+    if(has_started) {
+        count++;
+        switch(count) {
         case 1:
             if(sum <= 20 && isAlive) {
                 let card3 = Math.floor(Math.random() * (max-min)) + min;
@@ -132,6 +133,7 @@ function newcard() {
                 }
                 break;                
             }
+        }
     }
     
 }
