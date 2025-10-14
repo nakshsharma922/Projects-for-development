@@ -13,6 +13,7 @@ body {
     background-image: url("images/table.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .heading {
