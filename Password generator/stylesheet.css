@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: navy;
+    color: rgb(102, 191, 102);
+    font-weight: bold;
+}
+
+h1 {
+    color: white;
+}
+
+button {
+    border: none;
+    color: white;
+    background-color: rgb(102, 191, 102);
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: .5rem;
+}
+
+#gen-pass {
+    margin: 2rem 0px 1rem;
+}
+
+.pass { 
+    margin-top: 0.5rem;
+}
