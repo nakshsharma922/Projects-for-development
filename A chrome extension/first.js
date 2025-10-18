@@ -1,11 +1,14 @@
-let btn = document.getElementById("input-btn");
-let inp = document.getElementById("input-el");
-btn.addEventListener("click",savethislink);
+let input_btn = document.getElementById("save-btn");
+let input_el = document.getElementById("input-el");
+let url_btn = document.getElementById("fetch-url");
+let arr;
 
-function savethislink() {
-    let link = inp.value;
-    let words = document.getElementById("words");
-    let url = window.location.href;
-    words.href = url;
-    words.innerHTML += link + "<br>";   
+url_btn.addEventListnener("click",fetch_url()
+    
+);
+
+
+function fetch_url() {
+    let a = window.location.href;
+    let list = document.getElementById("list");
 }
