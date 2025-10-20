@@ -1,14 +1,16 @@
-let input_btn = document.getElementById("save-btn");
-let input_el = document.getElementById("input-el");
-let url_btn = document.getElementById("fetch-url");
-let arr;
+let in_txt = document.getElementById("inp-txt");
+let sav_btn = document.getElementById("sav-btn");
+let fch_btn = document.getElementById("fch-btn")
+let ulEl = document.getElementById("ul-el");
+let arr = [""];
 
-url_btn.addEventListnener("click",fetch_url()
-    
-);
+sav_btn.addEventListener("click" , save_input);
 
 
-function fetch_url() {
-    let a = window.location.href;
-    let list = document.getElementById("list");
+function save_input() {
+    let link = in_txt.value;
+    arr += link;
+    for(let i=0;i<arr.length;i++) {
+        ulEl.innerHTML += `<li>${arr}</li>`;
+    }
 }

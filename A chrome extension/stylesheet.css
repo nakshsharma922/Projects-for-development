@@ -1,21 +1,31 @@
 * {
     margin: 0;
-    padding: 1rem;
-    /* text-align: center; */
-    font-family: sans-serif,Arial, Helvetica;
+    padding: 0;
     box-sizing: border-box;
+    
+}
+
+#inp-txt {
+    width: 100%;    
+    border: 1px solid green;
+    padding: 4px;
 }
 
 button {
-    margin-top: 4px;
-    background-color: #5f9341;
-    color: white;
     border: none;
-    padding: 10px 25px;
+    background-color: green;
+    color: white;
+    padding: 5px 20px;
+    margin-top: 3px;
+    font-weight: bold;
 }
 
-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #5f9341;
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
+
+.container {
+    margin: .6rem;
+}
+
