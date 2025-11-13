@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Student Clubs & Community</title>
+    <style>
+        /* --- Reset & base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.4;
+            background: #f7f7f9;
+            color: #111;
+            padding-top: 64px;
+            transition: background .2s, color .2s;
+        }
+
+        body.dark {
+            background: #0f1114;
+            color: #e6eef6
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: #ffffff;
+            border-bottom: 1px solid #e3e6ea;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 1rem;
+            z-index: 20
+        }
+
+        body.dark header {
+            background: #0b0c0e;
+            border-color: #1a1a1a
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.1rem
+        }
+
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: .5rem;
+            align-items: center
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            padding: .35rem .6rem;
+            border-radius: 6px
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, .04)
+        }
+
+        .controls {
+            display: flex;
+            gap: .5rem;
+            align-items: center
+        }
+
+        button {
+            cursor: pointer;
+            border: 0;
+            background: #2b6eff;
+            color: white;
+            padding: .45rem .6rem;
+            border-radius: 8px
+        }
+
+        .ghost {
+            background: transparent;
+            color: inherit;
+            border: 1px solid rgba(0, 0, 0, .08)
+        }
+
+        .searchbar {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            padding: .4rem;
+            background: rgba(0, 0, 0, .03);
+            border-radius: 8px
+        }
+
+        input[type="search"] {
+            border: 0;
+            background: transparent;
+            outline: none
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 1rem
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1rem
+        }
+
+        select,
+        input[type="search"] {
+            padding: .45rem .6rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: transparent
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .98));
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid #e6e9ee;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            min-height: 160px;
+            box-shadow: 0 2px 8px rgba(16, 24, 40, .04)
+        }
+
+        body.dark .card {
+            background: linear-gradient(180deg, #0b0c0f, #0b0c0f);
+            border-color: #17181a;
+            box-shadow: none
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            margin-bottom: .15rem
+        }
+
+        .meta {
+            font-size: .85rem;
+            color: #4b5563
+        }
+
+        .card .actions {
+            margin-top: auto;
+            display: flex;
+            gap: .5rem
+        }
+
+        .chip {
+            padding: .25rem .5rem;
+            border-radius: 999px;
+            border: 1px solid #e3e6ea;
+            font-size: .8rem
+        }
+
+        .joined {
+            background: #e6ffed;
+            color: #046a3a;
+            border-color: #c7f0d9
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 40
+        }
+
+        .modal {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            width: min(520px, 95%);
+            box-shadow: 0 10px 30px rgba(2, 6, 23, .3)
+        }
+
+        body.dark .modal {
+            background: #0b0c0f;
+            color: #e6eef6
+        }
+
+        form .row {
+            display: flex;
+            gap: .5rem;
+            margin-bottom: .6rem
+        }
+
+        form label {
+            font-size: .85rem;
+            margin-bottom: .25rem;
+            display: block
+        }
+
+        @media (max-width:520px) {
+            header {
+                padding: .5rem
+            }
+
+            .brand {
+                font-size: .95rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">CampusSphere</div>
+        <div class="controls" style="margin-left:1rem">
+            <div class="searchbar" aria-hidden="true">🔎</div>
+        </div>
+        <nav>
+            <a href="#" id="nav-home">Home</a>
+            <a href="#clubs">Clubs</a>
+            <a href="#events">Events</a>
+            <button id="theme-toggle" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="toolbar" aria-label="toolbar">
+            <input id="search" type="search" placeholder="Search clubs..." />
+            <select id="category">
+                <option value="all">All categories</option>
+                <option value="literary">Literary</option>
+                <option value="sports">Sports</option>
+                <option value="tech">Tech</option>
+                <option value="csr">CSR</option>
+            </select>
+            <button id="open-create" class="ghost">+ Create club</button>
+            <div style="margin-left:auto;font-size:.9rem;color:#6b7280">Joined: <span id="joined-count">0</span></div>
+        </section>
+
+        <section id="clubs">
+            <h2 style="margin-bottom:.6rem">Clubs</h2>
+            <div id="grid" class="grid" aria-live="polite"></div>
+        </section>
+
+        <section id="events" style="margin-top:2rem">
+            <h2 style="margin-bottom:.6rem">Upcoming Events</h2>
+            <ul id="events-list" style="list-style:none;display:flex;flex-direction:column;gap:.5rem;padding-left:0">
+                <!-- filled by JS -->
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal template (hidden by default) -->
+    <template id="create-modal">
+        <div class="modal-backdrop" role="dialog" aria-modal="true">
+            <div class="modal">
+                <h3>Create a new club</h3>
+                <form id="create-form">
+                    <div class="row" style="flex-direction:column">
+                        <label for="c-name">Club name</label>
+                        <input id="c-name" name="name" required />
+                    </div>
+                    <div class="row" style="flex-direction:column">
+                        <label for="c-desc">Short description</label>
+                        <input id="c-desc" name="desc" />
+                    </div>
+                    <div class="row" style="gap:.5rem">
+                        <select id="c-cat" name="category">
+                            <option value="tech">Tech</option>
+                            <option value="literary">Literary</option>
+                            <option value="sports">Sports</option>
+                            <option value="csr">CSR</option>
+                        </select>
+                        <input id="c-venue" name="venue" placeholder="Venue (optional)" />
+                    </div>
+                    <div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:.6rem">
+                        <button type="button" id="cancel-create" class="ghost">Cancel</button>
+                        <button type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        /* ===== Example data ===== */
+        const initialClubs = [
+            { id: 'c1', name: 'Literary Club', desc: 'Books • Debates • Poetry', category: 'literary' },
+            { id: 'c2', name: 'Koshish (CSR)', desc: 'Community outreach', category: 'csr' },
+            { id: 'c3', name: 'Basketball Club', desc: 'Practice & matches', category: 'sports' },
+            { id: 'c4', name: "Engineer's Day Committee", desc: 'Events & workshops', category: 'tech' },
+            { id: 'c5', name: 'Adventure Club', desc: 'Trekking • Trips', category: 'sports' },
+        ];
+
+        /* ===== State & storage helpers ===== */
+        const db = {
+            load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback } catch (e) { return fallback } },
+            save(key, val) { localStorage.setItem(key, JSON.stringify(val)) }
+        };
+
+        let clubs = db.load('clubs', initialClubs);
+        let joined = new Set(db.load('joined', []));
+        const grid = document.getElementById('grid');
+        const searchInput = document.getElementById('search');
+        const categorySelect = document.getElementById('category');
+        const joinedCount = document.getElementById('joined-count');
+        const eventsList = document.getElementById('events-list');
+
+        /* ===== Render functions ===== */
+        function updateJoinedCount() { joinedCount.textContent = joined.size; }
+        function makeCard(c) {
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.setAttribute('data-id', c.id);
+            card.innerHTML = `
+    <div>
+      <h3>${escapeHtml(c.name)}</h3>
+      <div class="meta">${escapeHtml(c.desc || '')}</div>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:center;margin-top:.6rem">
+      <span class="chip">${c.category}</span>
+    </div>
+    <div class="actions">
+      <button class="join-btn" data-id="${c.id}">${joined.has(c.id) ? 'Joined ✓' : 'Join'}</button>
+      <button class="ghost view-btn" data-id="${c.id}">View</button>
+    </div>
+  `;
+            if (joined.has(c.id)) card.querySelector('.join-btn').classList.add('joined');
+            return card;
+        }
+        function renderGrid() {
+            grid.innerHTML = '';
+            const q = searchInput.value.trim().toLowerCase();
+            const cat = categorySelect.value;
+            const filtered = clubs.filter(c => {
+                if (cat !== 'all' && c.category !== cat) return false;
+                if (!q) return true;
+                return c.name.toLowerCase().includes(q) || (c.desc || '').toLowerCase().includes(q);
+            });
+            if (filtered.length === 0) grid.innerHTML = '<div style="grid-column:1/-1;padding:1rem;color:#6b7280">No clubs found.</div>';
+            filtered.forEach(c => grid.appendChild(makeCard(c)));
+        }
+
+        /* ===== Events & interactions ===== */
+        grid.addEventListener('click', (e) => {
+            const b = e.target.closest('.join-btn');
+            if (!b) return;
+            const id = b.dataset.id;
+            if (joined.has(id)) joined.delete(id); else joined.add(id);
+            db.save('joined', Array.from(joined));
+            renderGrid(); updateJoinedCount();
+        });
+
+        grid.addEventListener('click', (e) => {
+            const v = e.target.closest('.view-btn');
+            if (!v) return;
+            const id = v.dataset.id;
+            const club = clubs.find(x => x.id === id);
+            if (!club) return;
+            alert(`${club.name}\n\n${club.desc ?? 'No description.'}\nCategory: ${club.category}`);
+        });
+
+        searchInput.addEventListener('input', renderGrid);
+        categorySelect.addEventListener('change', renderGrid);
+
+        /* ===== Create club modal ===== */
+        const template = document.getElementById('create-modal');
+        document.getElementById('open-create').addEventListener('click', () => {
+            const node = template.content.cloneNode(true);
+            document.body.appendChild(node);
+            const modal = document.querySelector('.modal-backdrop');
+            const form = document.getElementById('create-form');
+            document.getElementById('cancel-create').addEventListener('click', () => modal.remove());
+            form.addEventListener('submit', (ev) => {
+                ev.preventDefault();
+                const name = document.getElementById('c-name').value.trim();
+                const desc = document.getElementById('c-desc').value.trim();
+                const category = document.getElementById('c-cat').value;
+                if (!name) return alert('Name required');
+                const id = 'c' + Date.now();
+                clubs.unshift({ id, name, desc, category });
+                db.save('clubs', clubs);
+                modal.remove();
+                renderGrid();
+            });
+        });
+
+        /* ===== Events list (static demo) ===== */
+        const sampleEvents = [
+            { title: 'Koshish Outreach — Sep 20', club: 'Koshish (CSR)' },
+            { title: 'Basketball Inter-college — Oct 3', club: 'Basketball Club' },
+            { title: 'Hackathon Warmup — Oct 12', club: "Engineer's Day Committee" },
+        ];
+        function renderEvents() {
+            eventsList.innerHTML = '';
+            sampleEvents.forEach(ev => {
+                const li = document.createElement('li');
+                li.className = 'card';
+                li.style.display = 'flex'; li.style.flexDirection = 'row'; li.style.justifyContent = 'space-between'; li.style.alignItems = 'center';
+                li.innerHTML = `<div><strong>${escapeHtml(ev.title)}</strong><div class="meta">${escapeHtml(ev.club)}</div></div><div><button class="ghost">Interested</button></div>`;
+                eventsList.appendChild(li);
+            });
+        }
+
+        /* ===== Theme toggle persisted ===== */
+        const themeBtn = document.getElementById('theme-toggle');
+        const theme = db.load('theme', 'light');
+        if (theme === 'dark') document.body.classList.add('dark');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            db.save('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        /* ===== Utilities & boot ===== */
+        function escapeHtml(s) { return String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'); }
+        function boot() {
+            // restore clubs from storage if present (first load does this above), ensure joined is Set
+            joined = new Set(db.load('joined', []));
+            updateJoinedCount();
+            renderGrid();
+            renderEvents();
+        }
+        boot();
+    </script>
+</body>
+
+</html>           
