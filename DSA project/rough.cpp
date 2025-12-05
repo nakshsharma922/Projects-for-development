@@ -88,6 +88,9 @@ int main() {
     // obj.right::show();
 
     fstream file("data.txt", ios::out);
+    fstream file("data.txt", ios::in);
+    fstream file("data.txt", ios::app);
+    fstream file("data.txt", ios::binary);
     // if(!file.is_open()) {
     //     cerr << "Cannot open the file for writing" << endl;
     //     return 1;   
