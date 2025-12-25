@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
+<html>
 <body>
-    
-    <script src="index.js"></script>
+
+<input id="x" placeholder="Enter number">
+<button onclick="check()">Check</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  try {
+    let v = document.getElementById("x").value;
+    if (isNaN(v)) throw "Not a number";
+    document.getElementById("msg").innerText = "Valid";
+  } catch (e) {
+    document.getElementById("msg").innerText = "Error";
+  }
+}
+</script>
+
 </body>
 </html>
