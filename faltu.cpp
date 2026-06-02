@@ -9,18 +9,18 @@ int main()
         int u, v;
         cin >> u >> v;
         adj[u].push_back(v);
-        //adj[v].push_back(u);
+        adj[v].push_back(u);
     }
 
-    //cout << adj[0][1];
+    cout << adj[0][1];
 
-    // for(int i=0;i<6;i++) {
-    //     cout << i << " : ";
-    //     for(int j: adj[i]) {
-    //         cout << j << " ";
-    //     }
-    //     cout << endl;
-    // }
+    for(int i=0;i<6;i++) {
+        cout << i << " : ";
+        for(int j: adj[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
 
     queue<int> q;
     int visited[6] = {0};
